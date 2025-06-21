@@ -10,13 +10,13 @@ class BookController extends Controller
 {
     public function index(){
         $data = Book::select('id','name','user_id')
-        // ->with([
-        //     'user' => function($query){
-        //         $query->select('id','name');
-        //     }])
-        //     ->whereRelation('user', 'name', 'like', "%Royce%")
+        ->with([
+            'user' => function($query){
+                $query->select('id','name');
+            }])
+            ->whereRelation('user', 'name', 'like', "%Royce%")
             ->get();
-
+            
         return view('book', compact('data'));
     }
 
