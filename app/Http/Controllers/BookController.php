@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\KirimEmail;
 use App\Models\Book;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookController extends Controller
 {
@@ -16,7 +18,7 @@ class BookController extends Controller
             }])
             ->whereRelation('user', 'name', 'like', "%Royce%")
             ->get();
-            
+
         return view('book', compact('data'));
     }
 
@@ -44,5 +46,12 @@ class BookController extends Controller
         }catch (\Throwable $th){
             return $this->apiResponse($th->getMessage(),NULL,500);
         }
+    }
+
+    public function sendEmail()
+    {
+        Mail::to('adamadnan@gmail.com')->send(new KirimEmail());
+        
+        return "Berhasil Kirim email Broo";
     }
 }

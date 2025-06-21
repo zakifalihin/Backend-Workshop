@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('book',[BookController::class,'index']);
+Route::get('Kirim-email',[BookController::class, 'sendEmail']);
