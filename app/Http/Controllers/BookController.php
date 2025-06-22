@@ -51,7 +51,6 @@ class BookController extends Controller
     public function sendEmail()
     {
         Mail::to('adamadnan@gmail.com')->send(new KirimEmail());
-        
         return "Berhasil Kirim email Broo";
     }
 }
